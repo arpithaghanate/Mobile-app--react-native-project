@@ -72,7 +72,7 @@ const App: () => React$Node = () => {
   // );
   return (
     <View>
-      <Text>Hello</Text>
+      <Text>Hi</Text>
     </View>
   );
 };
