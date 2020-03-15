@@ -16,6 +16,7 @@ export default class App extends React.Component {
             <Text style={styles.parked}>Parked</Text>
           </Card>
           <Text>{'\n'} </Text>
+      <Text> hi </Text>
           <Card style={styles.card}>
             <Text style={styles.reserved}>Reserved</Text>
           </Card>
