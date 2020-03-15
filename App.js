@@ -1,119 +1,101 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import * as React from 'react';
+import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+// // You can import from local files
+// import AssetExample from './components/AssetExample';
 
-// import {
-//   Header,
-//   LearnMoreLinks,
-//   Colors,
-//   DebugInstructions,
-//   ReloadInstructions,
-// } from 'react-native/Libraries/NewAppScreen';
+// or any pure javascript modules available in npm
+import {Card} from 'react-native-paper';
 
-const App: () => React$Node = () => {
-  // return (
-  //   <>
-  //     <StatusBar barStyle="dark-content" />
-  //     <SafeAreaView>
-  //       <ScrollView
-  //         contentInsetAdjustmentBehavior="automatic"
-  //         style={styles.scrollView}>
-  //         <Header />
-  //         {global.HermesInternal == null ? null : (
-  //           <View style={styles.engine}>
-  //             <Text style={styles.footer}>Engine: Hermes</Text>
-  //           </View>
-  //         )}
-  //         <View style={styles.body}>
-  //           <View style={styles.sectionContainer}>
-  //             <Text style={styles.sectionTitle}>Step One</Text>
-  //             <Text style={styles.sectionDescription}>
-  //               Edit <Text style={styles.highlight}>App.js</Text> to change this
-  //               screen and then come back to see your edits.
-  //             </Text>
-  //           </View>
-  //           <View style={styles.sectionContainer}>
-  //             <Text style={styles.sectionTitle}>See Your Changes</Text>
-  //             <Text style={styles.sectionDescription}>
-  //               <ReloadInstructions />
-  //             </Text>
-  //           </View>
-  //           <View style={styles.sectionContainer}>
-  //             <Text style={styles.sectionTitle}>Debug</Text>
-  //             <Text style={styles.sectionDescription}>
-  //               <DebugInstructions />
-  //             </Text>
-  //           </View>
-  //           <View style={styles.sectionContainer}>
-  //             <Text style={styles.sectionTitle}>Learn More</Text>
-  //             <Text style={styles.sectionDescription}>
-  //               Read the docs to discover what to do next:
-  //             </Text>
-  //           </View>
-  //           <LearnMoreLinks />
-  //         </View>
-  //       </ScrollView>
-  //     </SafeAreaView>
-  //   </>
-  // );
-  return (
-    <View>
-      <Text>Hi</Text>
-    </View>
-  );
-};
+export default class App extends React.Component {
+  render() {
+    return (
+      <SafeAreaView>
+        <View style={styles.container} flexDirection="row">
+          <Card style={styles.card}>
+            <Text style={styles.parked}>Parked</Text>
+          </Card>
+          <Text>{'\n'} </Text>
+          <Card style={styles.card}>
+            <Text style={styles.reserved}>Reserved</Text>
+          </Card>
+          <Text>{'\n'} </Text>
+          <Card style={styles.card}>
+            <Text style={styles.empty}>Empty</Text>
+          </Card>
+          <Text>{'\n'} </Text>
+          <Card style={styles.card}>
+            <Text style={styles.blocked}>Blocked</Text>
+          </Card>
+          <Text>{'\n'} </Text>
+          <Card style={styles.card}>
+            <Text style={styles.other}>Other</Text>
+          </Card>
+        </View>
+      </SafeAreaView>
+    );
+  }
+}
 
-// const styles = StyleSheet.create({
-//   scrollView: {
-//     backgroundColor: Colors.lighter,
-//   },
-//   engine: {
-//     position: 'absolute',
-//     right: 0,
-//   },
-//   body: {
-//     backgroundColor: Colors.white,
-//   },
-//   sectionContainer: {
-//     marginTop: 32,
-//     paddingHorizontal: 24,
-//   },
-//   sectionTitle: {
-//     fontSize: 24,
-//     fontWeight: '600',
-//     color: Colors.black,
-//   },
-//   sectionDescription: {
-//     marginTop: 8,
-//     fontSize: 18,
-//     fontWeight: '400',
-//     color: Colors.dark,
-//   },
-//   highlight: {
-//     fontWeight: '700',
-//   },
-//   footer: {
-//     color: Colors.dark,
-//     fontSize: 12,
-//     fontWeight: '600',
-//     padding: 4,
-//     paddingRight: 12,
-//     textAlign: 'right',
-//   },
-// });
-
-export default App;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#ecf0f1',
+    padding: 8,
+    paddingTop: 140,
+    paddingLeft: 20,
+    paddingRight: 2,
+  },
+  parked: {
+    fontSize: 20,
+    backgroundColor: '#66BB6A',
+    height: 60,
+    width: 85,
+    position: 'relative',
+    paddingLeft: 10,
+    paddingTop: 15,
+  },
+  reserved: {
+    fontSize: 20,
+    backgroundColor: '#4169E1',
+    height: 60,
+    width: 85,
+    position: 'relative',
+    paddingLeft: 10,
+    paddingTop: 15,
+  },
+  empty: {
+    fontSize: 20,
+    backgroundColor: '#E6E254',
+    height: 60,
+    width: 85,
+    position: 'relative',
+    paddingLeft: 10,
+    paddingTop: 15,
+  },
+  blocked: {
+    backgroundColor: '#E46363',
+    fontSize: 20,
+    height: 60,
+    width: 85,
+    position: 'relative',
+    paddingLeft: 10,
+    paddingTop: 15,
+  },
+  other: {
+    backgroundColor: '#A97ADF',
+    fontSize: 20,
+    height: 60,
+    width: 85,
+    position: 'relative',
+    paddingLeft: 10,
+    paddingTop: 15,
+  },
+  card: {
+    height: 60,
+    width: 85,
+    position: 'relative',
+    alignContent: 'center',
+  },
+});
