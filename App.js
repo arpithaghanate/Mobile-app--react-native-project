@@ -1,102 +1,99 @@
 import * as React from 'react';
-import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+import Login from './src/Login';
+import Register from './src/Register';
+import ScreenOne from './src/ScreenOne';
+import FirstPage from './src/FirstPage';
+import ScreenTwo from './src/ScreenTwo';
+// import ScreenThree from './src/ScreenThree';
+// import DrawerNavigator from 'react-navigation-drawer/lib/typescript/src/navigators/createDrawerNavigator';
+import {createDrawerNavigator, DrawerActions} from 'react-navigation-drawer';
+import {IconButton} from 'react-native-paper';
 
-// // You can import from local files
-// import AssetExample from './components/AssetExample';
+const RootStack = createStackNavigator(
+  {
+    FirstPage: FirstPage,
+    Login: Login,
+    Register: Register,
+    ScreenOne: ScreenOne,
+    ScreenTwo: ScreenTwo,
+  },
+  {
+    initialRouteName: 'FirstPage',
+  },
+  {
+    defaultNavigationOptions: ({navigation}) => ({
+      title: 'Screen One',
+      headerStyle: {
+        backgroundColor: '#781608',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginLeft: 15,
+      },
+      headerLeft: () => (
+        <IconButton
+          icon="menu"
+          color="white"
+          size={25}
+          onPress={() => {
+            navigation.dispatch(DrawerActions.openDrawer());
+          }}
+        />
+      ),
+      headerRight: () => <IconButton icon="bell" color="white" size={20} />,
+    }),
+  },
+);
 
-// or any pure javascript modules available in npm
-import {Card} from 'react-native-paper';
+const Screen1 = createStackNavigator({
+  One: ScreenOne,
+});
+const Screen2 = createStackNavigator({
+  Two: ScreenTwo,
+});
+// const Screen3 = createStackNavigator({
+//   Three: ScreenThree,
+// });
+
+const drawerNavigator = createDrawerNavigator(
+  {
+    SOne: Screen1,
+    STwo: Screen2,
+    // SThree: Screen3,
+  },
+  {
+    drawerType: 'front',
+    lazy: false,
+    contentOptions: {
+      activeTintColor: '#ffffff',
+      inactiveTintColor: '#781608',
+      activeBackgroundColor: '#781608',
+      inactiveBackgroundColor: '#ffffff',
+      itemStyle: {
+        borderBottomWidth: 1,
+        borderColor: '#DEDDDD',
+      },
+      labelStyle: {
+        fontSize: 16,
+        marginLeft: 25,
+      },
+    },
+  },
+);
+
+const SwitchNavigator = createSwitchNavigator({
+  // RootStack: RootStack,
+  Stack: RootStack,
+  Drawer: drawerNavigator,
+});
+const AppContainer = createAppContainer(SwitchNavigator);
 
 export default class App extends React.Component {
   render() {
-    return (
-      <SafeAreaView>
-        <View style={styles.container} flexDirection="row">
-          <Card style={styles.card}>
-            <Text style={styles.parked}>Parked</Text>
-          </Card>
-          <Text>{'\n'} </Text>
-      <Text> hi </Text>
-          <Card style={styles.card}>
-            <Text style={styles.reserved}>Reserved</Text>
-          </Card>
-          <Text>{'\n'} </Text>
-          <Card style={styles.card}>
-            <Text style={styles.empty}>Empty</Text>
-          </Card>
-          <Text>{'\n'} </Text>
-          <Card style={styles.card}>
-            <Text style={styles.blocked}>Blocked</Text>
-          </Card>
-          <Text>{'\n'} </Text>
-          <Card style={styles.card}>
-            <Text style={styles.other}>Other</Text>
-          </Card>
-        </View>
-      </SafeAreaView>
-    );
+    return <AppContainer />;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    padding: 8,
-    paddingTop: 140,
-    paddingLeft: 20,
-    paddingRight: 2,
-  },
-  parked: {
-    fontSize: 20,
-    backgroundColor: '#66BB6A',
-    height: 60,
-    width: 85,
-    position: 'relative',
-    paddingLeft: 10,
-    paddingTop: 15,
-  },
-  reserved: {
-    fontSize: 20,
-    backgroundColor: '#4169E1',
-    height: 60,
-    width: 85,
-    position: 'relative',
-    paddingLeft: 10,
-    paddingTop: 15,
-  },
-  empty: {
-    fontSize: 20,
-    backgroundColor: '#E6E254',
-    height: 60,
-    width: 85,
-    position: 'relative',
-    paddingLeft: 10,
-    paddingTop: 15,
-  },
-  blocked: {
-    backgroundColor: '#E46363',
-    fontSize: 20,
-    height: 60,
-    width: 85,
-    position: 'relative',
-    paddingLeft: 10,
-    paddingTop: 15,
-  },
-  other: {
-    backgroundColor: '#A97ADF',
-    fontSize: 20,
-    height: 60,
-    width: 85,
-    position: 'relative',
-    paddingLeft: 10,
-    paddingTop: 15,
-  },
-  card: {
-    height: 60,
-    width: 85,
-    position: 'relative',
-    alignContent: 'center',
-  },
-});
